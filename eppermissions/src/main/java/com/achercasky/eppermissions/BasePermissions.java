@@ -18,8 +18,7 @@ public abstract class BasePermissions extends AppCompatActivity {
 
         if (requestCode == Constants.Permissions.PERMISSIONS_REQUEST_LOCATION) {
             // If request is cancelled, the result arrays are empty.
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.length > 0 && hasGrantedPermissions(grantResults)) {
                 onPermissionAccepted();
             } else {
                 onPermissionDenied();
@@ -44,6 +43,20 @@ public abstract class BasePermissions extends AppCompatActivity {
         } else {
             return code;
         }
+    }
+    //TODO handle for different permissions
+    private boolean hasGrantedPermissions(@NonNull final int[] permissions) {
+        boolean isGranted = false;
+
+        for(final int code: permissions) {
+            if(PackageManager.PERMISSION_GRANTED == code) {
+                isGranted = true;
+            } else {
+                isGranted = false;
+            }
+        }
+
+        return isGranted;
     }
 
     public abstract String[] getPermissions();

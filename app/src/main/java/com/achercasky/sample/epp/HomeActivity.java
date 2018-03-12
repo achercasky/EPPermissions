@@ -21,7 +21,8 @@ public class HomeActivity extends BasePermissions {
 
     @Override
     public String[] getPermissions() {
-        return new String[]{Manifest.permission. ACCESS_FINE_LOCATION};
+        //return new String[]{Manifest.permission. ACCESS_FINE_LOCATION};
+        return new String[]{Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS, Manifest.permission.CAMERA};
     }
 
     @Override
